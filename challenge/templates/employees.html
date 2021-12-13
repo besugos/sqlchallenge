@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simbiose Ventures - Funcionários</title>
+</head>
+<body>
+    <ul>
+        {% for employee in employees %}
+            <a href="{%  url 'update_employee' employee.id %}">
+                <li> {{ employee.id }} - {{ employee.full_name }}</li>
+            </a>
+        {%  endfor %}
+    </ul>
+
+    <a href="{% url 'create_employee' %}">Cadastrar novo funcionário</a>
+</body>
+</html>
