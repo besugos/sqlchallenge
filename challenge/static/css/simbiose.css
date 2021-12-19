@@ -1,0 +1,78 @@
+body {
+    font-family: sans-serif, SansSerif;
+}
+
+header {
+    background-color: darkblue;
+    padding-top: 10px;
+    padding-bottom: 1px;
+}
+
+h1 {
+    margin-left: 30px;
+    color: white;
+}
+
+navbar {
+    display: block;
+    background-color: darkblue;
+    padding: 10px;
+}
+
+a:hover {
+    background-color: lightskyblue;
+    padding: 10px;
+}
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+a:hover {
+    background-color: lightskyblue;
+    padding: 10px;
+}
+
+input {
+    margin-right: 30px;
+}
+
+table {
+    margin-bottom: 50px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: darkblue;
+    color: whitesmoke;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100px;
+}
+
+td {
+    padding: 3px 10px 3px 10px;
+}
+
+.id {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 50px;
+}
+
+.center {
+    text-align: center;
+}
+
+.ml-2 {
+    margin-left: 10px;
+}

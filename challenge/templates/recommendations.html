@@ -21,7 +21,7 @@
             <a href="/recommendations">Indicações</a>
         </span>
     </navbar>
-    <h2>Funcionários</h2>
+    <h2>Indicações</h2>
     <table>
         <tr>
             <th class="id">Id</th>
@@ -29,27 +29,26 @@
             <th>Email</th>
             <th>Indicado por</th>
         </tr>
-        {% for employee in employees %}
+        {% for recommendation in recommendations %}
             <tr>
-                <td class="center">{{ employee.id }}</td>
-                <td class="ml-2">{{ employee.full_name }}</td>
-                <td class="ml-2">{{ employee.email }}</td>
-                <td class="center">{{ employee.recommended_by }}</td>
+                <td class="center">{{ recommendation.id }}</td>
+                <td class="ml-2">{{ recommendation.candidate_name }}</td>
+                <td class="ml-2">{{ recommendation.candidate_email }}</td>
+                <td class="center">{{ recommendation.employee_id }}</td>
             </tr>
         {%  endfor %}
     </table>
 
-    <h2>Cadastrar novo funcionário</h2>
+    <h2>Cadastrar nova indicação</h2>
     <span>
-        <label for="full_name">Nome do funcionário</label>
-        <input type="text" id="full_name" name="full_name">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email">
+        <label for="candidate_name">Nome do candidato</label>
+        <input type="text" id="candidate_name" name="candidate_name">
+        <label for="candidate_email">Email</label>
+        <input type="text" id="candidate_email" name="candidate_email">
         <label for="recommended_by">Recomendado por (id do funcionário)</label>
         <input type="text" id="recommended_by" name="recommended_by">
-        <input type="submit" id="new_employee" value="Cadastrar">
+        <input type="submit" id="new_recommendation" value="Cadastrar">
     </span>
-
 
 </body>
 <script src="{% static 'js/simbiose.js' %}"></script>
