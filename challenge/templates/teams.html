@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Simbiose Ventures - Equipes</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/simbiose.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Simbiose Ventures</h1>
+    </header>
+    <navbar>
+        <span>
+            <a href="/">Funcionários</a>
+        </span>
+        <span>
+            <a href="/teams">Equipes</a>
+        </span>
+        <span>
+            <a href="/recommendations">Indicações</a>
+        </span>
+    </navbar>
+    <h2>Equipes</h2>
+    {% for team in teams %}
+        <table class="wide">
+            <tr>
+                <th>Equipe {{ team.id }} - {{ team.name }}</th>
+            </tr>
+            {% for employee_team in employees_teams %}
+                {% if employee_team.team_id == team.id %}
+                    {% for employee in employees %}
+                        {% if employee.id == employee_team.employee_id %}
+                            <tr>
+                                <td>{{ employee.full_name }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </table>
+    {%  endfor %}
+
+    <h2>Cadastrar nova equipe</h2>
+    <span>
+        <label for="team_name">Nome da equipe</label>
+        <input type="text" id="team_name" name="team_name">
+        <input type="submit" id="new_team" value="Cadastrar">
+    </span>
+
+    <h2>Cadastrar funcionário em equipe</h2>
+    <span>
+        <label for="employee_id">Id do funcionário</label>
+        <input type="text" id="employee_id" name="employee_id">
+        <label for="team_id">Id da equipe</label>
+        <input type="text" id="team_id" name="team_id">
+        <input type="submit" id="new_employee_team" value="Cadastrar">
+    </span>
+
+</body>
+<script src="{% static 'js/simbiose.js' %}"></script>
+</html>

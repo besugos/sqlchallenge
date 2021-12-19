@@ -76,3 +76,7 @@ td {
 .ml-2 {
     margin-left: 10px;
 }
+
+.wide {
+    min-width: 300px;
+}

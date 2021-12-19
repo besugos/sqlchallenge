@@ -18,8 +18,11 @@ def employee(request):
 
 
 def team(request):
-    return None
+    teams = session.query(Team)
+    employees_teams = session.query(EmployeeTeam)
+    employees = session.query(Employee)
 
+    return render(request, 'teams.html', {'teams': teams, 'employees_teams': employees_teams, 'employees': employees})
 
 def recommendation(request):
     recommendations = session.query(Recommendation)
@@ -32,7 +35,7 @@ def add_employee(request):
     email = request.GET['email']
     recommended_by = request.GET['recommended']
 
-    check_indicator_employee_by_id(recommended_by)
+    check_employee_id(recommended_by)
 
     new_employee = Employee(full_name=name, email=email, recommended_by=recommended_by)
 
@@ -41,13 +44,20 @@ def add_employee(request):
 
     response = HttpResponse()
 
-    # raise Exception
-
     return response
 
 
-def new_team(request):
-    return None
+def add_team(request):
+    name = request.GET['name']
+
+    new_team = Team(name=name)
+
+    session.add(new_team)
+    session.commit()
+
+    response = HttpResponse()
+
+    return response
 
 
 def add_recommendation(request):
@@ -55,7 +65,7 @@ def add_recommendation(request):
     email = request.GET['email']
     recommended_by = request.GET['recommended']
 
-    check_indicator_employee_by_id(recommended_by)
+    check_employee_id(recommended_by)
 
     new_recommendation = Recommendation(candidate_name=name, candidate_email=email, employee_id=recommended_by)
 
@@ -64,7 +74,22 @@ def add_recommendation(request):
 
     response = HttpResponse()
 
-    # raise Exception
+    return response
+
+
+def add_employee_team(request):
+    team_id = request.GET['team']
+    employee_id = request.GET['employee']
+
+    check_employee_id(employee_id)
+    check_team_id(team_id)
+
+    new_employee_team = EmployeeTeam(employee_id=employee_id, team_id=team_id)
+
+    session.add(new_employee_team)
+    session.commit()
+
+    response = HttpResponse()
 
     return response
 
@@ -77,10 +102,20 @@ def delete_employee(request):
     return None
 
 
-def check_indicator_employee_by_id(id):
-    indicator = session.query(Employee).filter(Employee.id == id).first()
+def check_employee_id(employee_id):
+    requested_employee = session.query(Employee).filter(Employee.id == employee_id).first()
     try:
-        existing = indicator.id
+        existing = requested_employee.id
+    except:
+        raise Exception
+
+    return
+
+
+def check_team_id(team_id):
+    requested_team = session.query(Team).filter(Team.id == team_id).first()
+    try:
+        existing = requested_team.id
     except:
         raise Exception
 
