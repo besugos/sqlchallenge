@@ -15,6 +15,10 @@ try {
     document.getElementById("new_employee_team").onclick = createEmployeeTeam;
     } catch {}
 
+try {
+    document.getElementById("recommendations_count").onclick = countRecommendations;
+    } catch {}
+
 function createEmployee() {
     let name = document.getElementById("full_name").value;
     let email = document.getElementById("email").value;
@@ -63,4 +67,10 @@ function createEmployeeTeam() {
         }
         window.location.href = "/teams";
     });
+}
+
+function countRecommendations() {
+    let employee = document.getElementById("employee_id").value;
+
+    window.location.href = `/employeerecommendations?employee=${employee}`;
 }

@@ -94,6 +94,16 @@ def add_employee_team(request):
     return response
 
 
+def calculate_recommendations(request):
+    employee_id = request.GET['employee']
+    employee_count = session.query(Employee).filter(Employee.recommended_by == employee_id).count()
+    employees = session.query(Employee)
+
+    print(employee_id)
+
+    return render(request, 'employeerecommendations.html', {'employees': employees, 'total': employee_count, 'employee_id': employee_id})
+
+
 def update_employee(request):
     return None
 
